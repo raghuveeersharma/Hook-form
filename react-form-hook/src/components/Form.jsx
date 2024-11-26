@@ -1,5 +1,5 @@
 import React from "react";
-
+import axiox from "axios";
 import { useForm } from "react-hook-form";
 
 const Form = () => {
@@ -19,8 +19,13 @@ const Form = () => {
     });
   };
   const onSubmit = async (data) => {
-    await delay(2);
-    console.log(data);
+    try {
+      await axiox.post("http://localhost:5000/signup", data).then((res) => {
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
     reset();
   };
 
